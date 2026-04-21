@@ -1,7 +1,7 @@
 
 <!-- Sidebar -->
 <div class="sidebar">
-  <div class="brand">AdminLTE</div>
+  <div class="brand">Nishant Multiservices</div>
 
   <a href="index.php"><i class="bi bi-speedometer2"></i> Dashboard </a>
   
