@@ -79,19 +79,6 @@ $combinedTotal = $services + $products;
     <div class="col-md-8">
       <div class="card p-3">
         <h5>Sales Analytics</h5>
-
-          <?php
-            // Get services count
-            $services = $conn->query("SELECT COUNT(*) AS total FROM services");
-            $services = $services->fetch_assoc()['total'] ?? 0;
-
-            // Get products count
-            $products = $conn->query("SELECT COUNT(*) AS total FROM products");
-            $products = $products->fetch_assoc()['total'] ?? 0;
-
-            $total = $services + $products;
-          ?>
-
         <canvas id="chart"></canvas>
       </div>
     </div>
