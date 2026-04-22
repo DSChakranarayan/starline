@@ -21,22 +21,23 @@
 $stmt = $conn->prepare("
     SELECT 
         c.*, 
-        cat.name, 
-        g.name
+        cat.category_name, 
+        g.group_name
     FROM customers c
     LEFT JOIN customer_categories cat ON c.category_id = cat.id
-    LEFT JOIN customer_groups g ON c.group_id = g.id
+    LEFT JOIN Customer_groups g ON c.group_id = g.id
 ");
 
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
+    $i = 1;
     while($row = $result->fetch_assoc()) {
 ?>
 
     <tr>
-        <td><?= $row["id"]; ?></td>
+        <td><?= $i++; ?></td>
         <td><?= $row["name"]; ?></td>
         <td><?= $row["mobile"]; ?></td>
         <td><?= $row["category_name"] ?? '-'; ?></td>
