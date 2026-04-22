@@ -1,8 +1,8 @@
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js?v=<?php echo time(); ?>"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js?v=<?php echo time(); ?>"></script>
+<script src="inc/bootstrap.bundle.min.js?v=<?php echo time(); ?>"></script>
+<script src="inc/chart.js?v=<?php echo time(); ?>"></script>
 <script>
 const services = <?php echo json_encode((int)$services); ?>;
 const products = <?php echo json_encode((int)$products); ?>;
