@@ -13,7 +13,7 @@
     <a href="customer.php">Add Customer</a>
     <a href="customerlist.php">List Customers</a>
     <a href="customercategory.php">Category</a>
-    <a href="group.php">Group</a>
+    <a href="customergroup.php">Group</a>
     <a href="customerprint.php">Print</a>
   </div>
 

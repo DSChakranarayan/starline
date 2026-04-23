@@ -1,4 +1,4 @@
-<?php $pageTitle = "Customers category"; ?>
+<?php $pageTitle = "Customers Group"; ?>
 <?php include("header.php"); ?>
 <?php include("sidebar.php"); ?>
 <?php include("navbar.php"); ?>
@@ -7,21 +7,21 @@
     $message = "";
     $sn = 1;
 /* =========================
-   ADD category
+   ADD group
 ========================= */
-if (isset($_POST['add_category'])) {
-    $name = trim($_POST['category_name']);
+if (isset($_POST['add_group'])) {
+    $name = trim($_POST['group_name']);
 
     if (!empty($name)) {
-        $stmt = $conn->prepare("INSERT INTO customer_categories (category_name) VALUES (?)");
+        $stmt = $conn->prepare("INSERT INTO customer_groups (group_name) VALUES (?)");
         $stmt->bind_param("s", $name);
         
         if ($stmt->execute()) {
-            $_SESSION['message'] = "Customer category Added successfully";
+            $_SESSION['message'] = "Customer Group Added successfully";
             // header("Location: " . $_SERVER['PHP_SELF']);
             echo "<script>alert('" . $_SESSION['message'] . "');</script>";
             unset($_SESSION['message']);
-            header("Refresh:0; url=customercategory.php");
+            header("Refresh:0; url=customergroup.php");
             exit;
         } else {
             echo "Delete failed: " . $conn->error;
@@ -34,21 +34,21 @@ if (isset($_POST['add_category'])) {
 }
 
 /* =========================
-   UPDATE category
+   UPDATE group
 ========================= */    
-if (isset($_POST['update_category'])) {
+if (isset($_POST['update_group'])) {
     $id = $_POST['id'];
-    $name = trim($_POST['category_name']);
+    $name = trim($_POST['group_name']);
 
     if (!empty($name)) {
-        $stmt = $conn->prepare("UPDATE customer_categories SET category_name=? WHERE id=?");
+        $stmt = $conn->prepare("UPDATE customer_groups SET group_name=? WHERE id=?");
         $stmt->bind_param("si", $name, $id);
 
         if ($stmt->execute()) {
-            $_SESSION['message'] = "Customer category Updated successfully";
+            $_SESSION['message'] = "Customer Group Updated successfully";
             echo "<script>alert('" . $_SESSION['message'] . "');</script>";
             unset($_SESSION['message']);
-            header("Refresh:0; url=customercategory.php");
+            header("Refresh:0; url=customergroup.php");
             exit;
         } else {
             echo "Delete failed: " . $conn->error;
@@ -60,20 +60,20 @@ if (isset($_POST['update_category'])) {
 }
 
 /* =========================
-   Delete category
+   Delete group
 ========================= */
 if (isset($_GET['delete_id'])) {
 
     $id = intval($_GET['delete_id']);
 
-    $stmt = $conn->prepare("DELETE FROM customer_categories WHERE id = ?");
+    $stmt = $conn->prepare("DELETE FROM customer_groups WHERE id = ?");
     $stmt->bind_param("i", $id);
 
     if ($stmt->execute()) {
-        $_SESSION['message'] = "Customer category Deleted successfully";
+        $_SESSION['message'] = "Customer Group Deleted successfully";
         echo "<script>alert('" . $_SESSION['message'] . "');</script>";
         unset($_SESSION['message']);
-        header("Refresh:0; url=customercategory.php");
+        header("Refresh:0; url=customergroup.php");
 
         exit;
     } else {
@@ -85,7 +85,7 @@ if (isset($_GET['delete_id'])) {
 /* =========================
    FETCH DATA
 ========================= */
-$result = $conn->query("SELECT * FROM customer_categories ORDER BY id DESC");
+$result = $conn->query("SELECT * FROM customer_groups ORDER BY id DESC");
 ?>
 
 <?php
@@ -101,13 +101,13 @@ if (isset($_SESSION['message'])) {
         <!-- ================= LEFT: ADD FORM ================= -->
         <div class="col-md-6">
             <div class="card p-3 shadow-sm">
-                <h4>Add Category</h4>
+                <h4>Add Group</h4>
 
                 <form method="post">
                     <div class="mb-2">
-                        <input type="text" name="category_name" class="form-control" placeholder="Enter category name" required>
+                        <input type="text" name="group_name" class="form-control" placeholder="Enter group name" required>
                     </div>
-                    <button type="submit" name="add_category" class="btn btn-primary">Add</button>
+                    <button type="submit" name="add_group" class="btn btn-primary">Add</button>
                 </form>
             </div>
         </div>
@@ -115,7 +115,7 @@ if (isset($_SESSION['message'])) {
         <!-- ================= RIGHT: LIST ================= -->
         <div class="col-md-6">
             <div class="card p-3 shadow-sm">
-                <h4>Category List</h4>
+                <h4>Group List</h4>
 
                 <table class="table table-bordered mt-2">
                     <tr>
@@ -135,14 +135,14 @@ if (isset($_SESSION['message'])) {
                                     <input type="hidden" name="id" value="<?= $row['id']; ?>">
 
                                     <input type="text"
-                                        name="category_name"
-                                        value="<?= htmlspecialchars($row['category_name']); ?>"
+                                        name="group_name"
+                                        value="<?= htmlspecialchars($row['group_name']); ?>"
                                         class="form-control form-control-sm">
                             </td>
 
                             <td>
                                     <button type="submit"
-                                            name="update_category"
+                                            name="update_group"
                                             class="btn btn-sm btn-success ms-2">
                                         Update
                                     </button>
@@ -150,7 +150,7 @@ if (isset($_SESSION['message'])) {
 
                                 <a href="?delete_id=<?= $row['id']; ?>"
                                 class="btn btn-sm btn-danger ms-2"
-                                onclick="return confirm('Delete this category?');">
+                                onclick="return confirm('Delete this group?');">
                                     Delete
                                 </a>
                             </td>
