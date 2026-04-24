@@ -14,7 +14,7 @@
     <a href="customerlist.php">List Customers</a>
     <a href="customercategory.php">Category</a>
     <a href="customergroup.php">Group</a>
-    <a href="customerprint.php">Print</a>
+    <!-- <a href="customerprint.php">Print</a> -->
   </div>
 
   <a data-bs-toggle="collapse" href="#service"><i class="bi bi-tools"></i> Services</a>
@@ -49,5 +49,5 @@
   </div>
 
   <a href="settings.php"><i class="bi bi-gear"></i> Settings</a>
-  <a href="#"><i class="bi bi-box-arrow-right"></i> Logout</a>
+  <a href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
 </div>
