@@ -37,6 +37,22 @@ $products = $res2->fetch_assoc()['total'] ?? 0;
 // combined total
 $combinedTotal = $services + $products;
 
+$sql5 = "SELECT SUM(amount) AS total FROM expenses";
+$result = mysqli_query($conn, $sql5);
+
+$row = mysqli_fetch_assoc($result);
+
+// If no data, SUM returns NULL → handle it
+$expensetotal = $row['total'] ?? 0;
+
+// Also handle explicit NULL
+if ($expensetotal == null) {
+    $expensetotal = 0;
+}
+
+
+$remaining = $total - $expensetotal;
+
 ?>
 
 
@@ -67,7 +83,7 @@ $combinedTotal = $services + $products;
 
     <div class="col-md-3">
       <div class="small-box bg-danger">
-        <h3>65</h3>
+        <h3><?php echo $expensetotal; ?></h3>
         <p>Expenses</p>
         <div class="icon"><i class="bi bi-wallet"></i></div>
       </div>
@@ -76,6 +92,20 @@ $combinedTotal = $services + $products;
 
 
     <div class="row mt-4">
+
+    <div class="col-md-4">
+      <div class="small-box bg-primary">
+        <h3><?php echo $remaining; ?></h3>
+        <p>Balance</p>
+        <div class="icon"><i class="bi bi-wallet"></i></div>
+      </div> </br>
+      <!-- <div class="small-box bg-primary">
+        <h3><?php echo $remaining; ?></h3>
+        <p>Balance</p>
+        <div class="icon"><i class="bi bi-wallet"></i></div>
+      </div> -->
+    </div>
+
     <div class="col-md-8">
       <div class="card p-3">
         <h5>Sales Analytics</h5>
@@ -83,14 +113,6 @@ $combinedTotal = $services + $products;
       </div>
     </div>
 
-    <div class="col-md-4">
-      <div class="card p-3">
-        <h5>Quick Info</h5>
-        <p>Total Orders: 320</p>
-        <p>Active Users: 150</p>
-        <p>Pending Tasks: 12</p>
-      </div>
-    </div>
   </div>
 
 

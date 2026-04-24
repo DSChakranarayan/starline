@@ -68,7 +68,7 @@ echo "<script>alert('Data saved successfully!');</script>";
           $result = $conn->query("SELECT * FROM customers");
 
           while($row = $result->fetch_assoc()){
-              echo "<option value='".$row['id']."'>".$row['name']."</option>";
+              echo "<option value='".$row['id']."'>".$row['full_name']."</option>";
           }
         ?>
       </select>
@@ -209,7 +209,7 @@ document.addEventListener("click", function(e){
 $sql = "
 SELECT 
     i.id,
-    c.name AS customer_name,
+    c.full_name AS customer_name,
     i.total_amount,
     i.payment_method,
     i.date
